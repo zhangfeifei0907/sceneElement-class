@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主场景</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica neue", Helvetica, Tahoma, "lantinghei sc", "Microsoft Yahei", sans-serif;
+            font-weight: lighter;
+            font-size: 15px;
+            background-color: yellowgreen;
+        }
+
+        .maincontain {
+            width: 980px;
+            height: 600px;
+            border: 1px solid black;
+            margin: 50px auto 20px auto;
+        }
+
+        p {
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="maincontain">
+    <div class="content">
+
+    </div>
+</div>
+<p>
+    Type:<select id="scenetype">
+    <option value="sceneHeader">头部</option>
+    <option value="sceneLeftSidebar">左侧边栏</option>
+    <option value="sceneRightSidebar">右侧边栏</option>
+    <option value="sceneFooter">尾部</option>
+</select>&nbsp;&nbsp;
+    L:<input type="text" id="width">&nbsp;&nbsp;
+    H:<input type="text" id="height">&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" id="setBtn" value=" set ">
+</p>
+<p>
+    <select id="operateTarget">
+        <option value="sceneHeader">头部</option>
+        <option value="sceneLeftSidebar">左侧边栏</option>
+        <option value="sceneRightSidebar">右侧边栏</option>
+        <option value="sceneFooter">尾部</option>
+    </select>
+    <input type="button" id="hideBtn" value=" hide ">&nbsp;&nbsp;
+    <input type="button" id="showBtn" value=" show ">
+</p>
+<script src="js/sceneelement.js"></script>
+<script>
+    var setbtn = document.getElementById('setBtn');
+    var hidebtn = document.getElementById('hideBtn');
+    var showbtn = document.getElementById('showBtn');
+    var oh;
+    var or;
+    var ol;
+    var of;
+    setbtn.addEventListener('click', function () {
+        var testType = document.getElementById('scenetype').value;
+        var testHeight = document.getElementById('height').value;
+        var testWidth = document.getElementById('width').value;
+        var cssurl = 'css/sceneelement.css';
+        //--------------------------------------------------
+        switch(testType){
+            case 'sceneHeader':
+                oh=new sceneElement(testType, testWidth, testHeight, cssurl);
+                oh.creElement();
+                break;
+            case 'sceneLeftSidebar':
+                ol=new sceneElement(testType, testWidth, testHeight, cssurl);
+                ol.creElement();
+                break;
+            case 'sceneRightSidebar':
+                or=new sceneElement(testType, testWidth, testHeight, cssurl);
+                or.creElement();
+                break;
+            case 'sceneFooter':
+                of=new sceneElement(testType, testWidth, testHeight, cssurl);
+                of.creElement();
+                break;
+            default :break;
+        }
+    });
+    hidebtn.addEventListener('click', function(){
+        var operateTarget=document.getElementById('operateTarget').value;
+        switch(operateTarget) {
+            case 'sceneHeader':
+                oh.hideElement();
+                break;
+            case 'sceneLeftSidebar':
+                ol.hideElement();
+                break;
+            case 'sceneRightSidebar':
+                or.hideElement();
+                break;
+            case 'sceneFooter':
+                of.hideElement();
+                break;
+            default :
+                break;
+        }
+    });
+    showbtn.addEventListener('click', function(){
+        var operateTarget=document.getElementById('operateTarget').value;
+        switch(operateTarget) {
+            case 'sceneHeader':
+                oh.showElement();
+                break;
+            case 'sceneLeftSidebar':
+                ol.showElement();
+                break;
+            case 'sceneRightSidebar':
+                or.showElement();
+                break;
+            case 'sceneFooter':
+                of.showElement();
+                break;
+            default :
+                break;
+        }
+    });
+
+
+</script>
+
+</body>
+</html>
